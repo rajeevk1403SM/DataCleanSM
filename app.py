@@ -7,8 +7,8 @@ def upload_and_process(uploaded_file):
             df = pd.read_excel(uploaded_file, sheet_name='Sheet1')
 
             column_types = {
-                "DTCREATEDATE": "datetime64",
-                "DTLASTUPDATE": "datetime64",
+                "DTCREATEDATE": "datetime64[ns]",
+                "DTLASTUPDATE": "datetime64[ns]",
                 "CardRange": "int64",
                 "BIN": "int64",
                 "CurrencyCode": "str",
