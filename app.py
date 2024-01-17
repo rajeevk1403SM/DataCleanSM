@@ -7,7 +7,25 @@ def upload_and_process(uploaded_file):
             df = pd.read_excel(uploaded_file, sheet_name='Sheet1')
 
             column_types = {
-                # Your column types here
+                "DTCREATEDATE": "datetime64",
+                "DTLASTUPDATE": "datetime64",
+                "CardRange": "int64",
+                "BIN": "int64",
+                "CurrencyCode": "str",
+                "NBSUBCOMPANY": "int64",
+                "NBCOMPANY": "int64",
+                "Sub Company": "str",
+                "Company": "str",
+                "MV_SHIPMONEY_PARTNERS.PARTNER_ID": "str",  
+                "SEGMENT": "str",
+                "COMPANY NAME": "str",
+                "Referring Account Name -AFEX": "str",
+                "Referring Account Number-AFEX": "str",
+                "Distribution Account": "int64",
+                "Ticket Company Master": "str",
+                "Western Union Master": "str",
+                "Spend Company Master": "str",
+                "KAM": "str",
             }
             df = df.astype(column_types)
             df = df.sort_values(by='Sub Company', ascending=True)
