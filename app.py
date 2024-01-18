@@ -1,57 +1,32 @@
 import pandas as pd
 import streamlit as st
-
-def upload_and_process(uploaded_file):
-    try:
-        if uploaded_file:
-            df = pd.read_excel(uploaded_file, sheet_name='Sheet1')
-
-            column_types = {
-                "DTCREATEDATE": "datetime64[ns]",
-                "DTLASTUPDATE": "datetime64[ns]",
-                "CardRange": "int64",
-                "BIN": "int64",
-                "CurrencyCode": "str",
-                "NBSUBCOMPANY": "int64",
-                "NBCOMPANY": "int64",
-                "Sub Company": "str",
-                "Company": "str",
-                "MV_SHIPMONEY_PARTNERS.PARTNER_ID": "str",  
-                "SEGMENT": "str",
-                "COMPANY NAME": "str",
-                "Referring Account Name -AFEX": "str",
-                "Referring Account Number-AFEX": "str",
-                "Distribution Account": "int64",
-                "Ticket Company Master": "str",
-                "Western Union Master": "str",
-                "Spend Company Master": "str",
-                "KAM": "str",
-            }
-            df = df.astype(column_types)
-            df = df.sort_values(by='Sub Company', ascending=True)
-            df_filtered = df[df['DTCREATEDATE'].notna()]
-
-            output_file_path = "Filtered_Client_Master_File.xlsx"
-            df_filtered.to_excel(output_file_path, index=False)
-
-            st.success("File processed and saved as 'Filtered_Client_Master_File.xlsx'")
-            return output_file_path
-        else:
-            st.warning("No file selected")
-    except Exception as e:
-        st.error("Error: " + str(e))
+from functions_toclean_data import process_client_master
+from corpay_clean import process_file_corpay
 
 st.title("ShipMoney File Processor for Client Master")
 st.write("Upload Client Master Excel File by clicking the button below")
 
 uploaded_file = st.file_uploader("Upload here and Process", type=['xlsx'])
 if uploaded_file is not None:
-    processed_file_path = upload_and_process(uploaded_file)
+    processed_file_path = process_client_master(uploaded_file)
     if processed_file_path:
         with open(processed_file_path, "rb") as file:
             st.download_button(
                 label="Download Processed File",
                 data=file,
                 file_name=processed_file_path,
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            )
+st.write("Upload Card Registration Excel File by clicking the button below")
+
+uploaded_file = st.file_uploader("Upload here and Process", type=['xlsx'])
+if uploaded_file is not None:
+    processed_file_path2 = process_file_corpay(uploaded_file)
+    if processed_file_path2:
+        with open(processed_file_path2, "rb") as file:
+            st.download_button(
+                label="Download Processed File",
+                data=file,
+                file_name=processed_file_path2,
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             )
