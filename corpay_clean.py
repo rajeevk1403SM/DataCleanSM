@@ -109,7 +109,7 @@ def process_file_corpay(uploaded_file):
       # Output the final DataFrame
       # df.to_csv("output.csv", index=False)
       output_file_path = "Filtered_Corpay_File.xlsx"
-      df_filtered.to_excel(output_file_path, index=False)
+      df.to_excel(output_file_path, index=False)
 
       st.success("File processed and saved as 'Filtered_Corpay_File.xlsx'")
       return output_file_path
