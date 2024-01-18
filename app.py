@@ -5,7 +5,7 @@ from corpay_clean import process_file_corpay
 from bene_bank import populate_bene_bank_location
 
 st.title("ShipMoney File Processor (Account Management)")
-st.write("Upload Client Master Excel File by clicking the button below")
+st.subheader("Upload Client Master Excel File by clicking the button below")
 
 uploaded_file = st.file_uploader("Upload here and Process", key="file_uploader_1", type=['xlsx'])
 if uploaded_file is not None:
@@ -19,7 +19,7 @@ if uploaded_file is not None:
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             )
 
-st.write("To populate bene bank location for Corpay")
+st.subheader("To populate bene bank location for Corpay")
 uploaded_file = st.file_uploader("Upload your main data file", key="file_uploader_3", type=['xlsx'])
 key_file = st.file_uploader("Upload your currency-country key file", key="file_uploader_4", type=['xlsx'])
 
@@ -55,7 +55,7 @@ else:
 
 
 
-st.write("Upload Card Registration Excel File by clicking the button below")
+st.subheader("Upload Card Registration Excel File by clicking the button below")
 
 uploaded_file2 = st.file_uploader("Upload here and Process", key="file_uploader_2", type=['xlsx'])
 if uploaded_file2 is not None:
