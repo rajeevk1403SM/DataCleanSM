@@ -9,9 +9,6 @@ def process_file_corpay(uploaded_file):
       df.columns = df.iloc[0]
       df = df[1:]
 
-      # Add Custom Column for FX RATE
-      df['FX RATE'] = abs(df['Rate'] - df['Quote']) / df['Rate']
-
       # Change Type of columns
       df = df.astype({
           "Engagement Name": str, 
@@ -44,6 +41,9 @@ def process_file_corpay(uploaded_file):
           "Rate": float, 
           "Quote": float
       })
+
+      # Add Custom Column for FX RATE
+      df['FX RATE'] = abs(df['Rate'] - df['Quote']) / df['Rate']
 
       # Rename Columns
       df = df.rename(columns={
