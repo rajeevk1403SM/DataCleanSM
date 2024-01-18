@@ -19,9 +19,9 @@ if uploaded_file is not None:
             )
 st.write("Upload Card Registration Excel File by clicking the button below")
 
-uploaded_file = st.file_uploader("Upload here and Process", type=['xlsx'])
-if uploaded_file is not None:
-    processed_file_path2 = process_file_corpay(uploaded_file)
+uploaded_file2 = st.file_uploader("Upload here and Process", type=['xlsx'])
+if uploaded_file2 is not None:
+    processed_file_path2 = process_file_corpay(uploaded_file2)
     if processed_file_path2:
         with open(processed_file_path2, "rb") as file:
             st.download_button(
