@@ -19,7 +19,8 @@ if uploaded_file is not None:
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             )
 
-st.subheader("To populate bene bank location for Corpay")
+st.subheader("Tool to populate Bene Bank location for Corpay")
+
 uploaded_file = st.file_uploader("Upload your main data file", key="file_uploader_3", type=['xlsx'])
 key_file = st.file_uploader("Upload your currency-country key file", key="file_uploader_4", type=['xlsx'])
 
@@ -33,10 +34,7 @@ if uploaded_file and key_file:
     # Process the DataFrame
     processed_df = populate_bene_bank_location(df, key_df)
 
-    # Show the processed DataFrame
-    #st.write("Processed Data:")
-    #st.dataframe(processed_df)
-
+    # Save the processed DataFrame to a file
     output_file_path = "Populated_BeneBank_File.xlsx"
     processed_df.to_excel(output_file_path, index=False)
     st.success("File processed and saved as 'Populated_BeneBank_File.xlsx'")
