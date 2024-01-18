@@ -117,3 +117,4 @@ def process_file_corpay(uploaded_file):
       st.warning("No file selected")
   except Exception as e:
     st.error("Error: " + str(e))
+    raise
