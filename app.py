@@ -20,8 +20,8 @@ if uploaded_file is not None:
             )
 
 st.write("To populate bene bank location for Corpay")
-uploaded_file = st.file_uploader("Upload your main data file", type=['xlsx'])
-key_file = st.file_uploader("Upload your currency-country key file", type=['xlsx'])
+uploaded_file = st.file_uploader("Upload your main data file", key="file_uploader_3", type=['xlsx'])
+key_file = st.file_uploader("Upload your currency-country key file", key="file_uploader_4", type=['xlsx'])
 
 if uploaded_file and key_file:
     # Load the main DataFrame
