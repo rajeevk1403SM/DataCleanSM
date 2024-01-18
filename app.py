@@ -34,20 +34,20 @@ if uploaded_file and key_file:
     processed_df = populate_bene_bank_location(df, key_df)
 
     # Show the processed DataFrame
-    st.write("Processed Data:")
-    st.dataframe(processed_df)
+    #st.write("Processed Data:")
+    #st.dataframe(processed_df)
 
-    output_file_path = "Filtered_Client_Master_File.xlsx"
+    output_file_path = "Populated_BeneBank_File.xlsx"
     processed_df.to_excel(output_file_path, index=False)
-    st.success("File processed and saved as 'Filtered_Client_Master_File.xlsx'")
+    st.success("File processed and saved as 'Populated_BeneBank_File.xlsx'")
 
     # Provide a download link for the saved file
     with open(output_file_path, "rb") as file:
-        btn = st.download_button(
+        st.download_button(
             label="Download Processed File",
             data=file,
-            file_name="Filtered_Client_Master_File.xlsx",
-            mime="application/octet-stream"
+            file_name=output_file_path,
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         )
 
 else:
