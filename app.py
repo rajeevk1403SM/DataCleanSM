@@ -21,12 +21,12 @@ if uploaded_file is not None:
 
 st.subheader("Tool to populate Bene Bank location for Corpay")
 
-uploaded_file = st.file_uploader("Upload your main data file", key="file_uploader_3", type=['xlsx'])
+uploaded_file3 = st.file_uploader("Upload your main data file", key="file_uploader_3", type=['xlsx'])
 key_file = st.file_uploader("Upload your currency-country key file", key="file_uploader_4", type=['xlsx'])
 
-if uploaded_file and key_file:
+if uploaded_file3 and key_file:
     # Load the main DataFrame
-    df = pd.read_excel(uploaded_file)
+    df = pd.read_excel(uploaded_file3)
 
     # Load the key DataFrame
     key_df = pd.read_excel(key_file)
